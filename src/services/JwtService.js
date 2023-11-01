@@ -5,7 +5,7 @@ dotenv.config()
 const genneralAccessToken = (payload) => { //khi login thì chỉ truyền vào admin và id (trong userservice)
     const access_token = jwt.sign({
         ...payload
-    }, process.env.ACCESS_TOKEN, { expiresIn: '90d' })
+    }, process.env.ACCESS_TOKEN, { expiresIn: '10s' })
 
     return access_token
 }
