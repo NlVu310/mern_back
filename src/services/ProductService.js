@@ -144,7 +144,7 @@ const getDetailProduct = (id) => {
             }
             resolve({
                 status: 'OK',
-                message: 'SUCESS',
+                message: 'SUCCESS',
                 data: product
             })
         } catch (e) {
