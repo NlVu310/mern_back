@@ -98,6 +98,31 @@ const deleteManyProduct = (ids) => {
     })
 }
 
+
+const getDetailProduct = (id) => {
+    return new Promise(async (resolve, reject) => {
+        try {
+            const product = await Product.findOne({
+                _id: id
+            })
+            if (product === null) {
+                resolve({
+                    status: 'ERR',
+                    message: 'The product is not defined'
+                })
+            }
+            resolve({
+                status: 'OK',
+                message: 'SUCCESS',
+                data: product
+            })
+        } catch (e) {
+            reject(e)
+        }
+    })
+}
+
+
 const getAllProduct = (limit, page, sort, filter) => {
     return new Promise(async (resolve, reject) => {
         try {
@@ -144,22 +169,14 @@ const getAllProduct = (limit, page, sort, filter) => {
     })
 }
 
-const getDetailProduct = (id) => {
+const getAllType = () => {
     return new Promise(async (resolve, reject) => {
         try {
-            const product = await Product.findOne({
-                _id: id
-            })
-            if (product === null) {
-                resolve({
-                    status: 'ERR',
-                    message: 'The product is not defined'
-                })
-            }
+            const allType = await Product.distinct('type')
             resolve({
                 status: 'OK',
-                message: 'SUCCESS',
-                data: product
+                message: 'Get All Type ',
+                data: allType,
             })
         } catch (e) {
             reject(e)
@@ -173,5 +190,6 @@ module.exports = {
     getDetailProduct,
     deleteProduct,
     getAllProduct,
-    deleteManyProduct
+    deleteManyProduct,
+    getAllType
 }
