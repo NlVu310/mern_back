@@ -1,7 +1,7 @@
 const mongoose = require("mongoose")
 
 const orderSchema = new mongoose.Schema({
-    orderItem: [
+    orderItems: [
         {
             name: { type: String, required: true },
             amount: { type: String, required: true },
@@ -21,9 +21,8 @@ const orderSchema = new mongoose.Schema({
         phone: { type: Number, required: true },
     },
     paymentMethod: { type: String, required: true },
-    itemPrice: { type: Number, required: true },
+    itemsPrice: { type: Number, required: true },
     shippingPrice: { type: Number, required: true },
-    taxPrice: { type: Number, required: true },
     totalPrice: { type: Number, required: true },
     user: {
         type: mongoose.Schema.Types.ObjectId,
