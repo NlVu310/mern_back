@@ -36,7 +36,6 @@ const authUserMiddleWare = (req, res, next) => {
         }
         if (user?.isAdmin || user?.id === userId) {
             next()
-            // console.log('user', user, userId)
         } else {
             return res.status(404).json({
                 message: 'Xác thực thất bại',
