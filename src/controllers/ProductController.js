@@ -10,7 +10,7 @@ const createProduct = async (req, res) => {
         ) {
             return res.status(200).json({
                 status: 'ERR',
-                message: 'The input is required'
+                message: 'Không được để trống'
             })
         }
         const respone = await ProductService.createProduct(req.body)
@@ -30,7 +30,7 @@ const updateProduct = async (req, res) => {
         if (!productId) {
             return res.status(200).json({
                 status: 'ERR',
-                message: 'user ID is requried'
+                message: 'Yêu cầu sản phẩm'
             })
         }
         const respone = await ProductService.updateProduct(productId, data)
@@ -102,7 +102,7 @@ const getDetailProduct = async (req, res) => {
 const getAllProduct = async (req, res) => {
     try {
         const { limit, page, sort, filter } = req.query
-        const respone = await ProductService.getAllProduct(Number(limit) || null, Number(page) || 0, sort, filter)
+        const respone = await ProductService.getAllProduct(Number(limit), Number(page) || 0, sort, filter)
         return res.status(200).json(respone)
 
     } catch (e) {

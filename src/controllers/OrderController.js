@@ -58,6 +58,7 @@ const getDetailsOrder = async (req, res) => {
 }
 
 
+
 const cancelOrderDetails = async (req, res) => {
     try {
         const data = req.body.orderItems
@@ -90,10 +91,52 @@ const getAllOrder = async (req, res) => {
     }
 }
 
+
+const DeleteOrders = async (req, res) => {
+    try {
+        const orderId = req.params.id
+        if (!orderId) {
+            return res.status(200).json({
+                status: 'ERR',
+                message: 'orderId is requried'
+            })
+        }
+        const respone = await OrderService.DeleteOrders(orderId)
+        return res.status(200).json(respone)
+
+    } catch (e) {
+        return res.status(404).json({
+            message: e
+        })
+    }
+}
+
+
+const updateOrder = async (req, res) => {
+    try {
+        const orderId = req.params.id
+        const data = req.body
+        if (!orderId) {
+            return res.status(200).json({
+                status: 'ERR',
+                message: 'Yêu cầu sản phẩm'
+            })
+        }
+        const respone = await OrderService.updateOrder(orderId, data)
+        return res.status(200).json(respone)
+
+    } catch (e) {
+        return res.status(404).json({
+            message: e
+        })
+    }
+}
 module.exports = {
     createOrder,
     getAllOrderDetails,
     getDetailsOrder,
     cancelOrderDetails,
-    getAllOrder
+    getAllOrder,
+    DeleteOrders,
+    updateOrder
 }

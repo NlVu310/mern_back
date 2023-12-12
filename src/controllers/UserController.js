@@ -10,19 +10,19 @@ const createUser = async (req, res) => {
         if (!email || !password || !confirmPassword) {
             return res.status(200).json({
                 status: 'ERR',
-                message: 'The input is required'
+                message: 'Không được để trống'
             })
         }
         else if (!isCheckEmail) {
             return res.status(200).json({
                 status: 'ERR',
-                message: 'The input is email'
+                message: 'Cần nhập email'
             })
         }
         else if (password !== confirmPassword) {
             return res.status(200).json({
                 status: 'ERR',
-                message: 'The confirm password wrong'
+                message: 'Nhập lại mật khẩu sai'
             })
         }
         const respone = await UserService.createUser(req.body)
@@ -43,13 +43,13 @@ const loginUser = async (req, res) => {
         if (!email || !password) {
             return res.status(200).json({
                 status: 'ERR',
-                message: 'The input is required'
+                message: 'Không được để trống'
             })
         }
         else if (!isCheckEmail) {
             return res.status(200).json({
                 status: 'ERR',
-                message: 'The input is email'
+                message: 'Cần nhập email'
             })
         }
         const respone = await UserService.loginUser(req.body)
@@ -75,7 +75,7 @@ const updateUser = async (req, res) => {
         if (!userId) {
             return res.status(200).json({
                 status: 'ERR',
-                message: 'user ID is requried'
+                message: 'Yêu cầu người dùng'
             })
         }
         const respone = await UserService.updateUser(userId, data)
@@ -94,7 +94,7 @@ const deleteUser = async (req, res) => {
         if (!userId) {
             return res.status(200).json({
                 status: 'ERR',
-                message: 'user ID is requried'
+                message: 'Yêu cầu người dùng'
             })
         }
         const respone = await UserService.deleteUser(userId)
@@ -113,7 +113,7 @@ const deleteMany = async (req, res) => {
         if (!ids) {
             return res.status(200).json({
                 status: 'ERR',
-                message: 'ids is requried'
+                message: 'Yêu cầu người dùng'
             })
         }
         const respone = await UserService.deleteManyUser(ids)
@@ -144,7 +144,7 @@ const getDetailsUser = async (req, res) => {
         if (!userId) {
             return res.status(200).json({
                 status: 'ERR',
-                message: 'The userId is required'
+                message: 'Yêu cầu người dùng'
             })
         }
         const response = await UserService.getDetailsUser(userId)

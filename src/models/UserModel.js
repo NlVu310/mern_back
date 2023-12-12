@@ -15,5 +15,5 @@ const UserSchema = new mongoose.Schema(
     }
 );
 
-const User = mongoose.model("User", UserSchema); //tạo một bảng là Users ( tự thêm S vào cuối ) trong mongoDb , 
-module.exports = User; //cho phép sử dụng ở nơi khác
+const User = mongoose.model("User", UserSchema);
+module.exports = User; 

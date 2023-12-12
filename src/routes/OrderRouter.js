@@ -8,6 +8,10 @@ router.get('/get-all-order-by-id/:id', authUserMiddleWare, OrderController.getAl
 router.get('/get-details-order/:id', OrderController.getDetailsOrder)
 router.delete('/cancel-order/:id', authUserMiddleWare, OrderController.cancelOrderDetails)
 router.get('/get-all-order', OrderController.getAllOrder)
+router.delete('/delete-order/:id', OrderController.DeleteOrders)
+router.put('/update/:id', OrderController.updateOrder)
+
+
 
 
 module.exports = router     

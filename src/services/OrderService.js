@@ -43,7 +43,7 @@ const createOrder = (newOrder) => {
                 })
                 resolve({
                     status: 'ERR',
-                    message: `San pham voi id: ${arrId.join(',')} khong du hang`
+                    message: `Sản phẩm không đủ hàng`
                 })
             } else {
                 const createdOrder = await Order.create({
@@ -58,10 +58,10 @@ const createOrder = (newOrder) => {
                     shippingPrice,
                     totalPrice,
                     user: user,
-                    isPaid, paidAt
+                    isPaid, paidAt,
+
                 })
                 if (createdOrder) {
-                    // await EmailService.sendEmailCreateOrder(email,orderItems)
                     resolve({
                         status: 'OK',
                         message: 'success'
@@ -69,7 +69,6 @@ const createOrder = (newOrder) => {
                 }
             }
         } catch (e) {
-            //   console.log('e', e)
             reject(e)
         }
     })
@@ -84,7 +83,7 @@ const getAllOrderDetails = (id) => {
             if (order === null) {
                 resolve({
                     status: 'ERR',
-                    message: 'The order is not defined'
+                    message: ' Sản phẩm không xác định'
                 })
             }
             resolve({
@@ -107,7 +106,7 @@ const getDetailsOrder = (id) => {
             if (order === null) {
                 resolve({
                     status: 'ERR',
-                    message: 'The order is not defined'
+                    message: ' Sản phẩm không xác định'
                 })
             }
 
@@ -146,7 +145,7 @@ const cancelOrderDetails = (id, data) => {
                     if (order === null) {
                         resolve({
                             status: 'ERR',
-                            message: 'The order is not defined'
+                            message: ' Sản phẩm không xác định'
                         })
                     }
                 } else {
@@ -163,7 +162,7 @@ const cancelOrderDetails = (id, data) => {
             if (newData) {
                 resolve({
                     status: 'ERR',
-                    message: `San pham voi id: ${newData} khong ton tai`
+                    message: `Sản phẩm không tồn tại`
                 })
             }
             resolve({
@@ -193,10 +192,64 @@ const getAllOrder = () => {
     })
 }
 
+
+const DeleteOrders = (id) => {
+    return new Promise(async (resolve, reject) => {
+        try {
+            const checkOrder = await Order.findOne({
+                _id: id
+            })
+            if (checkOrder === null) {
+                resolve({
+                    status: 'ERR',
+                    message: 'Sản phẩm không đúng'
+                })
+            }
+
+            await Order.findByIdAndDelete(id)
+            resolve({
+                status: 'OK',
+                message: 'Xóa đơn hàng thành công',
+            })
+        } catch (e) {
+            reject(e)
+        }
+    })
+}
+
+
+const updateOrder = (id, data) => {
+    return new Promise(async (resolve, reject) => {
+        try {
+            const checkOrder = await Order.findOne({
+                _id: id
+            })
+            if (checkOrder === null) {
+                resolve({
+                    status: 'ERR',
+                    message: 'Đơn hàng không tồn tại'
+                })
+            }
+
+            const updatedorder = await Order.findByIdAndUpdate(id, data, { new: true })
+            resolve({
+                status: 'OK',
+                message: 'Success',
+                data: updatedorder
+            })
+        } catch (e) {
+            reject(e)
+        }
+    })
+}
+
+
 module.exports = {
     createOrder,
     getAllOrderDetails,
     getDetailsOrder,
     cancelOrderDetails,
-    getAllOrder
+    getAllOrder,
+    DeleteOrders,
+    updateOrder
 }

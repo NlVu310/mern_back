@@ -12,7 +12,7 @@ const createUser = (newUser) => {
             if (checkUser !== null) {
                 resolve({
                     status: 'ERR',
-                    message: 'The email is already'
+                    message: 'Email đã tồn tại'
                 })
             }
             const hash = bcrypt.hashSync(password, 10)
@@ -42,14 +42,14 @@ const loginUser = (userLogin) => {
             if (checkUser === null) {
                 resolve({
                     status: 'ERR',
-                    message: 'User not existed'
+                    message: 'Email không tồn tại'
                 })
             }
             const comparePassword = bcrypt.compareSync(password, checkUser.password)
             if (!comparePassword) {
                 resolve({
                     status: 'ERR',
-                    message: 'The password is incorrect'
+                    message: 'Mật khẩu không đúng'
                 })
             }
 
@@ -84,14 +84,14 @@ const updateUser = (id, data) => {
             if (checkUser === null) {
                 resolve({
                     status: 'ERR',
-                    message: 'The user is not defined'
+                    message: 'Người dùng không tồn tại'
                 })
             }
 
             const updateUser = await User.findByIdAndUpdate(id, data, { new: true })
             resolve({
                 status: 'OK',
-                message: 'Success',
+                message: 'Cập nhật thành công',
                 data: updateUser
             })
         } catch (e) {
@@ -109,14 +109,14 @@ const deleteUser = (id) => {
             if (checkUser === null) {
                 resolve({
                     status: 'ERR',
-                    message: 'The user is not defined'
+                    message: 'Người dùng không tồn tại'
                 })
             }
 
             await User.findByIdAndDelete(id)
             resolve({
                 status: 'OK',
-                message: 'Delete User Success',
+                message: 'Xóa thành công',
             })
         } catch (e) {
             reject(e)
@@ -131,7 +131,7 @@ const deleteManyUser = (ids) => {
             await User.deleteMany({ _id: ids })
             resolve({
                 status: 'OK',
-                message: 'Delete User Success',
+                message: 'Xóa thành công',
             })
         } catch (e) {
             reject(e)
@@ -163,7 +163,7 @@ const getDetailsUser = (id) => {
             if (user === null) {
                 resolve({
                     status: 'ERR',
-                    message: 'The user is not defined'
+                    message: 'Người dùng không tồn tại'
                 })
             }
             resolve({

@@ -45,7 +45,7 @@ const updateProduct = (id, data) => {
             if (checkProduct === null) {
                 resolve({
                     status: 'ERR',
-                    message: 'The user is not defined'
+                    message: 'Sản phẩm không tồn tại'
                 })
             }
 
@@ -70,14 +70,14 @@ const deleteProduct = (id) => {
             if (checkProduct === null) {
                 resolve({
                     status: 'ERR',
-                    message: 'Product is not defined'
+                    message: 'Sản phẩm không đúng'
                 })
             }
 
             await Product.findByIdAndDelete(id)
             resolve({
                 status: 'OK',
-                message: 'Delete Product Success',
+                message: 'Xóa sản phẩm thành công',
             })
         } catch (e) {
             reject(e)
@@ -91,7 +91,7 @@ const deleteManyProduct = (ids) => {
             await Product.deleteMany({ _id: ids })
             resolve({
                 status: 'OK',
-                message: 'Delete Product Success',
+                message: 'Xóa sản phẩm thành công',
             })
         } catch (e) {
             reject(e)
@@ -109,7 +109,7 @@ const getDetailProduct = (id) => {
             if (product === null) {
                 resolve({
                     status: 'ERR',
-                    message: 'The product is not defined'
+                    message: 'Sản phẩm không đúng'
                 })
             }
             resolve({
