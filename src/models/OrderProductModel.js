@@ -32,7 +32,7 @@ const orderSchema = new mongoose.Schema({
     },
     isPaid: { type: Boolean, default: false },
     paidAt: { type: Date },
-    isDelivered: { type: String, default: '' },
+    isDelivered: { type: String, default: 'Chưa giao hàng' },
     deliveredAt: { type: Date },
 },
     {

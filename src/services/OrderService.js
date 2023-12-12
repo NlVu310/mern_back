@@ -244,6 +244,21 @@ const updateOrder = (id, data) => {
 }
 
 
+
+const deleteManyOrder = (ids) => {
+    return new Promise(async (resolve, reject) => {
+        try {
+            await Order.deleteMany({ _id: ids })
+            resolve({
+                status: 'OK',
+                message: 'Xóa đơn hàng thành công',
+            })
+        } catch (e) {
+            reject(e)
+        }
+    })
+}
+
 module.exports = {
     createOrder,
     getAllOrderDetails,
@@ -251,5 +266,6 @@ module.exports = {
     cancelOrderDetails,
     getAllOrder,
     DeleteOrders,
-    updateOrder
+    updateOrder,
+    deleteManyOrder
 }

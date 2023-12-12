@@ -131,6 +131,27 @@ const updateOrder = async (req, res) => {
         })
     }
 }
+
+
+const deleteManyOrder = async (req, res) => {
+    try {
+        const ids = req.body
+        if (!ids) {
+            return res.status(200).json({
+                status: 'ERR',
+                message: 'ids is requried'
+            })
+        }
+        const respone = await OrderService.deleteManyOrder(ids)
+        return res.status(200).json(respone)
+
+    } catch (e) {
+        return res.status(404).json({
+            message: e
+        })
+    }
+}
+
 module.exports = {
     createOrder,
     getAllOrderDetails,
@@ -138,5 +159,6 @@ module.exports = {
     cancelOrderDetails,
     getAllOrder,
     DeleteOrders,
-    updateOrder
+    updateOrder,
+    deleteManyOrder
 }
