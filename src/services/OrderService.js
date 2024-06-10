@@ -23,13 +23,13 @@ const createOrder = (newOrder) => {
                 if (productData) {
                     return {
                         status: 'OK',
-                        message: 'SUCCESS'
+                        message: 'Tạo thành công'
                     }
                 }
                 else {
                     return {
                         status: 'OK',
-                        message: 'ERR',
+                        message: 'Có lỗi xảy ra',
                         id: order.product
                     }
                 }
@@ -64,7 +64,7 @@ const createOrder = (newOrder) => {
                 if (createdOrder) {
                     resolve({
                         status: 'OK',
-                        message: 'success'
+                        message: 'Thành công'
                     })
                 }
             }
@@ -88,7 +88,7 @@ const getAllOrderDetails = (id) => {
             }
             resolve({
                 status: 'OK',
-                message: 'SUCCESS',
+                message: 'Thành công',
                 data: order
             })
         } catch (e) {
@@ -112,7 +112,7 @@ const getDetailsOrder = (id) => {
 
             resolve({
                 status: 'OK',
-                message: 'SUCESSS',
+                message: 'Thành công',
                 data: order
             })
         } catch (e) {
@@ -151,7 +151,7 @@ const cancelOrderDetails = (id, data) => {
                 } else {
                     return {
                         status: 'OK',
-                        message: 'ERR',
+                        message: 'Có lỗi xảy ra',
                         id: order.product
                     }
                 }
@@ -167,7 +167,7 @@ const cancelOrderDetails = (id, data) => {
             }
             resolve({
                 status: 'OK',
-                message: 'success',
+                message: 'Thành công',
                 data: order
             })
         } catch (e) {
@@ -183,7 +183,7 @@ const getAllOrder = () => {
             const allOrder = await Order.find().sort({ createdAt: -1, updatedAt: -1 })
             resolve({
                 status: 'OK',
-                message: 'Success',
+                message: 'Thành công',
                 data: allOrder
             })
         } catch (e) {
@@ -234,7 +234,7 @@ const updateOrder = (id, data) => {
             const updatedorder = await Order.findByIdAndUpdate(id, data, { new: true })
             resolve({
                 status: 'OK',
-                message: 'Success',
+                message: 'Thành công',
                 data: updatedorder
             })
         } catch (e) {

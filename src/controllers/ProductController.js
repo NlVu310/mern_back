@@ -49,7 +49,7 @@ const deleteProduct = async (req, res) => {
         if (!productId) {
             return res.status(200).json({
                 status: 'ERR',
-                message: 'productId is requried'
+                message: 'Yêu cầu thông tin sản phẩm'
             })
         }
         const respone = await ProductService.deleteProduct(productId)
@@ -68,7 +68,7 @@ const deleteMany = async (req, res) => {
         if (!ids) {
             return res.status(200).json({
                 status: 'ERR',
-                message: 'ids is requried'
+                message: 'Yêu cầu thông tin sản phẩm'
             })
         }
         const respone = await ProductService.deleteManyProduct(ids)
@@ -87,7 +87,7 @@ const getDetailProduct = async (req, res) => {
         if (!productId) {
             return res.status(200).json({
                 status: 'ERR',
-                message: 'The Product id is required'
+                message: 'Yêu cầu thông tin sản phẩm'
             })
         }
         const response = await ProductService.getDetailProduct(productId)

@@ -145,7 +145,7 @@ const getAllUser = () => {
             const allUser = await User.find()
             resolve({
                 status: 'OK',
-                message: 'Get All User ',
+                message: 'Lấy thông tin thành công',
                 data: allUser
             })
         } catch (e) {
@@ -168,7 +168,7 @@ const getDetailsUser = (id) => {
             }
             resolve({
                 status: 'OK',
-                message: 'SUCESS',
+                message: 'Thành công',
                 data: user
             })
         } catch (e) {

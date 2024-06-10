@@ -10,7 +10,7 @@ const createProduct = (newProduct) => {
             if (checkProduct !== null) {
                 resolve({
                     status: 'ERR',
-                    message: 'The name of product is already'
+                    message: 'Tên sản phẩm đã tồn tại'
                 })
             }
             const newProduct = await Product.create({
@@ -42,17 +42,24 @@ const updateProduct = (id, data) => {
             const checkProduct = await Product.findOne({
                 _id: id
             })
+
             if (checkProduct === null) {
                 resolve({
                     status: 'ERR',
                     message: 'Sản phẩm không tồn tại'
                 })
             }
+            // if (checkProductName !== null) {
+            //     resolve({
+            //         status: 'ERR',
+            //         message: 'Tên Sản phẩm đã tồn tại'
+            //     })
+            // }
 
             const updatedProduct = await Product.findByIdAndUpdate(id, data, { new: true })
             resolve({
                 status: 'OK',
-                message: 'Success',
+                message: 'Thành công',
                 data: updatedProduct
             })
         } catch (e) {

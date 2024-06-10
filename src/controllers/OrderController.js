@@ -7,7 +7,7 @@ const createOrder = async (req, res) => {
         if (!paymentMethod || !itemsPrice || !totalPrice || !fullName || !address || !city || !phone) {
             return res.status(200).json({
                 status: 'ERR',
-                message: 'The input is required'
+                message: 'Không được để trống phương thức thanh toán và phương thức giao hàng'
             })
         }
         const respone = await OrderService.createOrder(req.body)
@@ -26,7 +26,7 @@ const getAllOrderDetails = async (req, res) => {
         if (!userId) {
             return res.status(200).json({
                 status: 'ERR',
-                message: 'The userId is required'
+                message: 'Yêu cầu thông tin người dùng'
             })
         }
         const response = await OrderService.getAllOrderDetails(userId)
@@ -44,7 +44,7 @@ const getDetailsOrder = async (req, res) => {
         if (!orderId) {
             return res.status(200).json({
                 status: 'ERR',
-                message: 'The userId is required'
+                message: 'Yêu cầu thông tin người dùng'
             })
         }
         const response = await OrderService.getDetailsOrder(orderId)
@@ -66,7 +66,7 @@ const cancelOrderDetails = async (req, res) => {
         if (!orderId) {
             return res.status(200).json({
                 status: 'ERR',
-                message: 'The orderId is required'
+                message: 'Yêu cầu thông tin đơn hàng'
             })
         }
         const response = await OrderService.cancelOrderDetails(orderId, data)
@@ -98,7 +98,7 @@ const DeleteOrders = async (req, res) => {
         if (!orderId) {
             return res.status(200).json({
                 status: 'ERR',
-                message: 'orderId is requried'
+                message: 'Yêu cầu thông tin đơn hàng'
             })
         }
         const respone = await OrderService.DeleteOrders(orderId)
@@ -119,7 +119,7 @@ const updateOrder = async (req, res) => {
         if (!orderId) {
             return res.status(200).json({
                 status: 'ERR',
-                message: 'Yêu cầu sản phẩm'
+                message: 'Yêu cầu thông tin sản phẩm'
             })
         }
         const respone = await OrderService.updateOrder(orderId, data)
@@ -139,7 +139,7 @@ const deleteManyOrder = async (req, res) => {
         if (!ids) {
             return res.status(200).json({
                 status: 'ERR',
-                message: 'ids is requried'
+                message: 'Yêu cầu thông tin đơn hàng'
             })
         }
         const respone = await OrderService.deleteManyOrder(ids)

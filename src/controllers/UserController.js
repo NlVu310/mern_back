@@ -179,7 +179,7 @@ const logoutUser = async (req, res) => {
         res.clearCookie('refresh_token')
         return res.status(200).json({
             status: 'OK',
-            message: 'Logout success'
+            message: 'đăng xuất thành công'
         })
     } catch (e) {
         return res.status(404).json({
